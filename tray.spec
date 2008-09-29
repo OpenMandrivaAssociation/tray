@@ -1,5 +1,5 @@
 %define version 0.1
-%define snapshot 20080919
+%define snapshot 20080930
 %define rel 1
 %define release %mkrel 0.%{snapshot}.%{rel}
 
@@ -10,7 +10,8 @@ Summary:	Small tray applications
 License:	GPL
 Group:		System/Base
 URL:		http://helllabs.org/git/tray.git
-Source0: 	tray.tgz
+# git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
+Source0: 	tray-%{snapshot}.tgz
 BuildRequires:	glibc-devel
 BuildRequires:	libgtk+-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
