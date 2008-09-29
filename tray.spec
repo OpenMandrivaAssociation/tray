@@ -13,6 +13,7 @@ URL:		http://helllabs.org/git/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
 Source0: 	tray-%{snapshot}.tgz
 BuildRequires:	gtk+2-devel
+BuildRequires:	alsa-lib-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
