@@ -1,6 +1,11 @@
+%define version 0.1
+%define snapshot 20080919
+%define rel 1
+%define release %mkrel 0.%{snapshot}.%{rel}
+
 Name:		tray
-Version:	20080919
-Release:	%mkrel 1
+Version:	%{version}
+Release:	%{release}
 Summary:	Small tray applications
 License:	GPL
 Group:		System/Base
