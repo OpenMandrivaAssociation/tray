@@ -12,8 +12,7 @@ Group:		System/Base
 URL:		http://helllabs.org/git/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
 Source0: 	tray-%{snapshot}.tgz
-BuildRequires:	glibc-devel
-BuildRequires:	libgtk+-devel
+BuildRequires:	gtk+2-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
