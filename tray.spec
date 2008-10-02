@@ -12,6 +12,7 @@ Group:		System/Base
 URL:		http://helllabs.org/git/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
 Source0: 	tray-%{snapshot}.tgz
+Patch0:		0001-Use-halt-and-reboot-instead-of-shutdown-helper-sinc.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
@@ -21,6 +22,7 @@ A collection of small GTK+ tray helpers.
 
 %prep
 %setup -q -n tray
+%patch0 -p1 -b .shutdown-commands
 
 %build
 make
