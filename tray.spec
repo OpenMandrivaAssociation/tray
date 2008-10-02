@@ -1,6 +1,6 @@
 %define version 0.1
 %define snapshot 20080930
-%define rel 1
+%define rel 2
 %define release %mkrel 0.%{snapshot}.%{rel}
 
 Name:		tray
@@ -14,6 +14,7 @@ URL:		http://helllabs.org/git/tray.git
 Source0: 	tray-%{snapshot}.tgz
 Patch0:		0001-Use-halt-and-reboot-instead-of-shutdown-helper-sinc.patch
 Patch1:		0002-Use-smaller-border-width-patch-from-Caio-Begotti.patch
+Patch2:		0003-Exit-after-cancel-in-direct-mode-d.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
@@ -25,6 +26,7 @@ A collection of small GTK+ tray helpers.
 %setup -q -n tray
 %patch0 -p1 -b .shutdown-commands
 %patch1 -p1 -b .smaller-border-width
+%patch2 -p1 -b .direct-exit
 
 %build
 make
