@@ -1,5 +1,5 @@
 %define version 0.1
-%define snapshot 20080930
+%define snapshot 20081031
 %define rel 2
 %define release %mkrel 0.%{snapshot}.%{rel}
 
@@ -12,9 +12,6 @@ Group:		System/Base
 URL:		http://helllabs.org/git/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
 Source0: 	tray-%{snapshot}.tgz
-Patch0:		0001-Use-halt-and-reboot-instead-of-shutdown-helper-sinc.patch
-Patch1:		0002-Use-smaller-border-width-patch-from-Caio-Begotti.patch
-Patch2:		0003-Exit-after-cancel-in-direct-mode-d.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
@@ -24,9 +21,6 @@ A collection of small GTK+ tray helpers.
 
 %prep
 %setup -q -n tray
-%patch0 -p1 -b .shutdown-commands
-%patch1 -p1 -b .smaller-border-width
-%patch2 -p1 -b .direct-exit
 
 %build
 make
@@ -40,6 +34,7 @@ make install DESTDIR=%{buildroot}
 %find_lang tray_keyleds
 %find_lang tray_reboot
 %find_lang tray_mixer
+%find_lang tray_eject
 
 %package reboot
 Group: System/Base
@@ -82,3 +77,16 @@ started by finit.
 %{_bindir}/tray_mixer
 %defattr(0644,root,root,0755)
 %{_datadir}/icons/tray_mixer/*
+
+%package eject
+Group: System/Base
+Summary: Lightweight usb safe umount app
+
+%description eject
+tray_eject is lightweigth system tray app to safely umount usb storage devices.
+
+%files eject -f tray_eject.lang
+%defattr(0755,root,root,0755)
+%{_bindir}/tray_eject
+%defattr(0644,root,root,0755)
+%{_datadir}/icons/tray_eject/*
