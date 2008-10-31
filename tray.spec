@@ -15,6 +15,7 @@ Source0: 	tray-%{snapshot}.tgz
 Patch0:		tray-reboot-direct-escape-quit.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
+BuildRequires:	dbus-glib-devel
 BuildRequires:	hal-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
