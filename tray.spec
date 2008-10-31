@@ -1,6 +1,6 @@
 %define version 0.1
 %define snapshot 20081031
-%define rel 2
+%define rel 3
 %define release %mkrel 0.%{snapshot}.%{rel}
 
 Name:		tray
@@ -12,6 +12,7 @@ Group:		System/Base
 URL:		http://helllabs.org/git/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
 Source0: 	tray-%{snapshot}.tgz
+Patch0:		tray-reboot-direct-escape-quit.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
@@ -21,6 +22,7 @@ A collection of small GTK+ tray helpers.
 
 %prep
 %setup -q -n tray
+%patch0 -p1 -b .direct-escape
 
 %build
 make
