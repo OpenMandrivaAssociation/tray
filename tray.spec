@@ -14,6 +14,7 @@ URL:		http://helllabs.org/git/tray.git
 Source0: 	tray-%{snapshot}.tgz
 Patch0:		tray-reboot-direct-escape-quit.patch
 Patch1:		tray-pmount.patch
+Patch2:		tray-erricon.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	dbus-glib-devel
@@ -27,6 +28,7 @@ A collection of small GTK+ tray helpers.
 %setup -q -n tray
 %patch0 -p1 -b .direct-escape
 %patch1 -p1 -b .pmount
+%patch2 -p1 -b .erricon
 
 %build
 make
