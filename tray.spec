@@ -1,6 +1,6 @@
 %define version 0.1
 %define snapshot 20081105
-%define rel 1
+%define rel 2
 %define release %mkrel 0.%{snapshot}.%{rel}
 
 Name:		tray
