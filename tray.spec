@@ -13,6 +13,7 @@ URL:		http://helllabs.org/git/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
 Source0: 	tray-%{snapshot}.tgz
 Patch0:		tray-reboot-direct-escape-quit.patch
+Patch1:		tray-pmount.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	dbus-glib-devel
@@ -25,6 +26,7 @@ A collection of small GTK+ tray helpers.
 %prep
 %setup -q -n tray
 %patch0 -p1 -b .direct-escape
+%patch1 -p1 -b .pmount
 
 %build
 make
