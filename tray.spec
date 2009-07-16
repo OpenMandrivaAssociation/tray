@@ -1,20 +1,17 @@
 %define version 0.1
-%define snapshot 20081105
-%define rel 2
+%define snapshot 20090716
+%define rel 1
 %define release %mkrel 0.%{snapshot}.%{rel}
 
 Name:		tray
 Version:	%{version}
 Release:	%{release}
-Summary:	Small tray applications
+Summary:	Small tray applications and a volume daemon
 License:	GPL
 Group:		System/Base
-URL:		http://helllabs.org/git/tray.git
+URL:		http://git.mandriva.com/?p=projects/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
 Source0: 	tray-%{snapshot}.tgz
-Patch0:		tray-reboot-direct-escape-quit.patch
-Patch1:		tray-pmount.patch
-Patch2:		tray-erricon.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	dbus-glib-devel
@@ -22,13 +19,10 @@ BuildRequires:	hal-devel
 BuildRoot:	%{_tmppath}/%{name}-%{version}
 
 %description
-A collection of small GTK+ tray helpers.
+A collection of small GTK+ tray helpers and a volume daemon.
 
 %prep
 %setup -q -n tray
-%patch0 -p1 -b .direct-escape
-%patch1 -p1 -b .pmount
-%patch2 -p1 -b .erricon
 
 %build
 make
@@ -43,6 +37,9 @@ make install DESTDIR=%{buildroot}
 %find_lang tray_reboot
 %find_lang tray_mixer
 %find_lang tray_eject
+%find_lang tray_randr
+
+# ---------------------------------#
 
 %package reboot
 Group: System/Base
@@ -58,6 +55,8 @@ light desktop environments started by finit.
 %defattr(0644,root,root,0755)
 %{_datadir}/icons/tray_reboot/*
 
+# ---------------------------------#
+
 %package keyleds
 Group: System/Base
 Summary: Keyboard status helper for netbooks without physical LEDs
@@ -71,6 +70,8 @@ light desktop environments started by finit.
 %{_bindir}/tray_keyleds
 %defattr(0644,root,root,0755)
 %{_datadir}/icons/tray_keyleds/*
+
+# ---------------------------------#
 
 %package mixer
 Group: System/Base
@@ -86,6 +87,8 @@ started by finit.
 %defattr(0644,root,root,0755)
 %{_datadir}/icons/tray_mixer/*
 
+# ---------------------------------#
+
 %package eject
 Group: System/Base
 Summary: Lightweight usb safe umount app
@@ -98,3 +101,34 @@ tray_eject is lightweigth system tray app to safely umount usb storage devices.
 %{_bindir}/tray_eject
 %defattr(0644,root,root,0755)
 %{_datadir}/icons/tray_eject/*
+
+# ---------------------------------#
+
+%package randr
+Group: System/Base
+Summary: Lightweight randr app
+
+%description randr
+tray_randr is a lightweight system tray randr app.
+
+%files randr -f tray_randr.lang
+%defattr(0755,root,root,0755)
+%{_bindir}/tray_randr
+%defattr(0644,root,root,0755)
+%{_datadir}/icons/tray_randr/*
+
+# ---------------------------------#
+
+%package -n vold
+Group: System/Base
+Summary: Lighweight volume daemon
+
+%description -n vold
+vold is lightweigth daemon that listen for the volume multimedia keys (raise,
+lower and mute) for light desktop environments.
+
+%files -n vold
+%defattr(0755,root,root,0755)
+%{_bindir}/vold
+%defattr(0644,root,root,0755)
+%{_datadir}/icons/vold/*
