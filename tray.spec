@@ -1,5 +1,5 @@
 %define version 0.1
-%define snapshot 20091007
+%define snapshot 20100413
 %define rel 1
 %define release %mkrel 0.%{snapshot}.%{rel}
 
