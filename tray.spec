@@ -1,5 +1,5 @@
 %define version 0.1
-%define snapshot 20090716
+%define snapshot 20091007
 %define rel 1
 %define release %mkrel 0.%{snapshot}.%{rel}
 
@@ -31,13 +31,16 @@ make locale
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
+mkdir -p %{buildroot}%{_sysconfdir}
 make install DESTDIR=%{buildroot}
+install buttons.conf %{buildroot}%{_sysconfdir}/
 
 %find_lang tray_keyleds
 %find_lang tray_reboot
 %find_lang tray_mixer
 %find_lang tray_eject
 %find_lang tray_randr
+%find_lang tray_buttons
 
 # ---------------------------------#
 
@@ -116,6 +119,23 @@ tray_randr is a lightweight system tray randr app.
 %{_bindir}/tray_randr
 %defattr(0644,root,root,0755)
 %{_datadir}/icons/tray_randr/*
+
+# ---------------------------------#
+
+%package buttons
+Group: System/Base
+Summary: Silly panel application that executes arbitray commands
+
+%description buttons
+tray_buttons is a silly panel application that executes arbitray commands
+when these (configurable) buttons are pressed.
+
+%files buttons -f tray_buttons.lang
+%defattr(0755,root,root,0755)
+%{_bindir}/tray_buttons
+%defattr(0644,root,root,0755)
+%{_datadir}/icons/tray_buttons/*
+%{_sysconfdir}/buttons.conf
 
 # ---------------------------------#
 
