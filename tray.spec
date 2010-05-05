@@ -19,7 +19,7 @@ Patch3:		0003-quote-mountpoint.patch
 Patch4:		0004-update-icon-status-at-start.patch
 Patch5:		0005-make-more-strings-translatable-from-Gdium.patch
 Patch9:		0009-update-translations-from-Gdium.patch
-Patch10:	tray-slocale.patch
+Patch10:	0010-do-not-try-to-build-locales-files-for-daemons-like-v.patch
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	dbus-glib-devel
