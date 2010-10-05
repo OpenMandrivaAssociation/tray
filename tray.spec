@@ -1,6 +1,6 @@
 %define version 0.1
-%define snapshot 20100413
-%define rel 3
+%define snapshot 20101005
+%define rel 1
 %define release %mkrel 0.%{snapshot}.%{rel}
 
 Name:		tray
@@ -11,15 +11,7 @@ License:	GPL
 Group:		System/Base
 URL:		http://git.mandriva.com/?p=projects/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
-Source0: 	tray-%{snapshot}.tgz
-Patch0:		tray-20100413-reboot-tray-icon.diff
-Patch1:		0001-do-not-hardcode-mount-command-length.patch
-Patch2:		0002-use-halevt-umount-if-possible.patch
-Patch3:		0003-quote-mountpoint.patch
-Patch4:		0004-update-icon-status-at-start.patch
-Patch5:		0005-make-more-strings-translatable-from-Gdium.patch
-Patch9:		0009-update-translations-from-Gdium.patch
-Patch10:	0010-do-not-try-to-build-locales-files-for-daemons-like-v.patch
+Source0:	tray-%{snapshot}.tgz
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	dbus-glib-devel
@@ -34,14 +26,14 @@ A collection of small GTK+ tray helpers and a volume daemon.
 %apply_patches
 
 %build
-make
-make locale
+%make
+%make locale
 
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}%{_bindir}
 mkdir -p %{buildroot}%{_sysconfdir}
-make install DESTDIR=%{buildroot}
+%make install DESTDIR=%{buildroot}
 install buttons.conf %{buildroot}%{_sysconfdir}/
 
 %find_lang tray_keyleds
@@ -50,6 +42,9 @@ install buttons.conf %{buildroot}%{_sysconfdir}/
 %find_lang tray_eject
 %find_lang tray_randr
 %find_lang tray_buttons
+
+%clean
+rm -rf %{buildroot}
 
 # ---------------------------------#
 
