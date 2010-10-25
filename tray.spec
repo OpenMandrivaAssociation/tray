@@ -1,5 +1,5 @@
 %define version 0.1
-%define snapshot 20101005
+%define snapshot 20101022
 %define rel 1
 %define release %mkrel 0.%{snapshot}.%{rel}
 
@@ -31,10 +31,8 @@ A collection of small GTK+ tray helpers and a volume daemon.
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}%{_bindir}
-mkdir -p %{buildroot}%{_sysconfdir}
 %make install DESTDIR=%{buildroot}
-install buttons.conf %{buildroot}%{_sysconfdir}/
+install -D buttons.conf %{buildroot}%{_sysconfdir}/buttons.conf
 
 %find_lang tray_keyleds
 %find_lang tray_reboot
@@ -59,6 +57,7 @@ light desktop environments started by finit.
 %files reboot -f tray_reboot.lang
 %defattr(0755,root,root,0755)
 %{_bindir}/tray_reboot
+%{_sbindir}/tray_logout.sh
 %defattr(0644,root,root,0755)
 %{_datadir}/icons/tray_reboot/*
 
@@ -139,7 +138,7 @@ when these (configurable) buttons are pressed.
 %{_bindir}/tray_buttons
 %defattr(0644,root,root,0755)
 %{_datadir}/icons/tray_buttons/*
-%{_sysconfdir}/buttons.conf
+%config(noreplace) %{_sysconfdir}/buttons.conf
 
 # ---------------------------------#
 
