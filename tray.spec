@@ -23,7 +23,7 @@ A collection of small GTK+ tray helpers and a volume daemon.
 
 %prep
 %setup -q -n tray
-%apply_patches
+%autopatch -p1
 
 %build
 %make
