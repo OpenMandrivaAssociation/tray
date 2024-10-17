@@ -9,7 +9,7 @@ Release:	%{release}
 Summary:	Small tray applications and a volume daemon
 License:	GPL
 Group:		System/Base
-URL:		http://git.mandriva.com/?p=projects/tray.git
+URL:		https://git.mandriva.com/?p=projects/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
 Source0:	tray-%{snapshot}.tgz
 BuildRequires:	gtk+2-devel
