@@ -12,6 +12,7 @@ Group:		System/Base
 URL:		https://git.mandriva.com/?p=projects/tray.git
 # git archive --prefix=tray/ master | gzip > tray-$(date +%Y%m%d).tgz
 Source0:	tray-%{snapshot}.tgz
+BuildRequires:	make
 BuildRequires:	gtk+2-devel
 BuildRequires:	alsa-lib-devel
 BuildRequires:	dbus-glib-devel
