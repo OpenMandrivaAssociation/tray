@@ -1,7 +1,7 @@
 %define version 0.1
 %define snapshot 20101122
 %define rel 1
-%define release %mkrel 0.%{snapshot}.%{rel}
+%define release 0.%{snapshot}.%{rel}.1
 
 Name:		tray
 Version:	%{version}
